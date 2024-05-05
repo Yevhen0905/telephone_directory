@@ -4,7 +4,6 @@ import {useNotificationStore} from './notification';
 export const useContactsStore = defineStore('contact', {
   state: () => ({
     contacts: [],
-    // contactsTotal: 0,
     contactToDelete: null
   }),
 
