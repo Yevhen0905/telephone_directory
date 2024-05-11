@@ -1,6 +1,6 @@
 <template>
   <div class="contact_list">
-    <div v-if="contacts.length > 0" class="wrapper_contact">
+    <div v-if="contacts.length" class="wrapper_contact">
       <h1 class="contact_title">Contact List</h1>
       <div class="contact_action">
         <div class="contact_input">
@@ -29,7 +29,12 @@
           <div class="contact_label">Show</div>
           <div class="wrapper_radio">
             <label class="label_radio">
-              <input class="radio" type="radio" value="all" v-model="favoritesToggle" />
+              <input
+                class="radio"
+                type="radio"
+                value="all"
+                v-model="favoritesToggle"
+              />
               All
             </label>
             <label class="label_radio">
@@ -44,7 +49,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentList.length > 0">
+      <div v-if="currentList.length">
         <ContactCard
           v-for="contact in currentList"
           :key="contact.id"
@@ -79,7 +84,8 @@
 
   const {search, filteredContacts} = useSearch(contacts);
 
-  const {sortOrder, sortOptions, currentSortList} = useSortingList(filteredContacts);
+  const {sortOrder, sortOptions, currentSortList} =
+    useSortingList(filteredContacts);
 
   const favoritesToggle = ref('all');
   const {currentList} = useFavorites(favoritesToggle, currentSortList);

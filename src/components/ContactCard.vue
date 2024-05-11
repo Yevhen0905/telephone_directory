@@ -13,7 +13,9 @@
       </div>
     </div>
     <div class="contact_card_btn">
-      <RouterLink class="card_btn btn_edit" :to="{name: 'edit', params: {id: contact.id}}"
+      <RouterLink
+        class="card_btn btn_edit"
+        :to="{name: 'edit', params: {id: contact.id}}"
         >Edit</RouterLink
       >
       <a class="card_btn btn_favorite" @click="toggleFavorite">
@@ -42,7 +44,9 @@
   });
 
   const favoriteText = computed(() => {
-    return props.contact.favorite ? 'Remove from Favorites' : 'Mark as Favorite';
+    return props.contact.favorite
+      ? 'Remove from Favorites'
+      : 'Mark as Favorite';
   });
 
   function toggleFavorite() {
