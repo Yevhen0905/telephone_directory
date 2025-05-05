@@ -1,5 +1,5 @@
 <template>
-  <div class="modal_delete" v-if="isActive">
+  <div class="modal_delete" v-if="contactToDelete">
     <div class="background_modal"></div>
     <div class="modal_wrapper">
       <div class="modal_header">
@@ -32,9 +32,9 @@
     return contactStore.contactToDelete;
   });
 
-  const isActive = computed(() => {
-    return contactToDelete.value ? true : false;
-  });
+//   const isActive = computed(() => {
+//     return contactToDelete.value ? true : false;
+//   });
 
   const fullName = computed(() => {
     if (contactToDelete.value) {

@@ -1,6 +1,6 @@
 <template>
   <div class="contact_list">
-    <div v-if="contacts.length" class="wrapper_contact">
+    <div v-if="contacts.length > 0" class="wrapper_contact">
       <h1 class="contact_title">Contact List</h1>
       <div class="contact_action">
         <div class="contact_input">
@@ -69,125 +69,125 @@
 </template>
 
 <script setup>
-  import ContactCard from '../components/ContactCard.vue';
+import ContactCard from "../components/ContactCard.vue";
 
-  import {ref, computed} from 'vue';
-  import {useContactsStore} from '@/stores/contacts';
-  import {useSearch} from '@/composables/useSearch';
-  import {useSortingList} from '@/composables/useSortingList';
-  import {useFavorites} from '@/composables/useFavorites';
+import { ref, computed } from "vue";
+import { useContactsStore } from "@/stores/contacts";
+import { useSearch } from "@/composables/useSearch";
+import { useSortingList } from "@/composables/useSortingList";
+import { useFavorites } from "@/composables/useFavorites";
 
-  const contactStore = useContactsStore();
-  contactStore.fetchContact();
+const contactStore = useContactsStore();
+contactStore.fetchContact();
 
-  const contacts = computed(() => contactStore.contacts);
+const contacts = computed(() => contactStore.contacts);
 
-  const {search, filteredContacts} = useSearch(contacts);
+const { search, filteredContacts } = useSearch(contacts);
 
-  const {sortOrder, sortOptions, currentSortList} =
-    useSortingList(filteredContacts);
+const { sortOrder, sortOptions, currentSortList } =
+  useSortingList(filteredContacts);
 
-  const favoritesToggle = ref('all');
-  const {currentList} = useFavorites(favoritesToggle, currentSortList);
+const favoritesToggle = ref("all");
+const { currentList } = useFavorites(favoritesToggle, currentSortList);
 </script>
 
 <style lang="scss">
-  .contact_action {
-    display: flex;
-    gap: 25px;
+.contact_action {
+  display: flex;
+  gap: 25px;
 
-    @media only screen and (max-width: 800px) {
-      gap: 5px;
-    }
-
-    @media only screen and (max-width: 590px) {
-      flex-direction: column;
-    }
+  @media only screen and (max-width: 800px) {
+    gap: 5px;
   }
 
-  .select {
-    padding: 7px 10px;
+  @media only screen and (max-width: 590px) {
+    flex-direction: column;
   }
+}
 
-  .wrapper_radio {
-    display: flex;
-    gap: 14px;
-  }
+.select {
+  padding: 7px 10px;
+}
 
-  .label_radio {
-    display: flex;
-    font-size: 16px;
-    align-items: center;
-    gap: 3px;
-  }
+.wrapper_radio {
+  display: flex;
+  gap: 14px;
+}
 
-  .radio {
-    width: 20px;
-    height: 20px;
-  }
+.label_radio {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  gap: 3px;
+}
 
-  .no_contact {
-    text-align: center;
-    padding-top: 50px;
-    font-size: 27px;
-  }
+.radio {
+  width: 20px;
+  height: 20px;
+}
 
-  .bg_img_list {
-    background-image: url('../assets/img/book-159880_1280.webp');
-    background-size: cover;
-    background-position: left top;
-    background-repeat: no-repeat;
+.no_contact {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 27px;
+}
+
+.bg_img_list {
+  background-image: url("../assets/img/book-159880_1280.webp");
+  background-size: cover;
+  background-position: left top;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &::before {
+    content: "";
+    backdrop-filter: blur(10px);
     position: absolute;
-    z-index: -1;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
-    &::before {
-      content: '';
-      backdrop-filter: blur(10px);
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
   }
+}
 
-  .bg_img {
-    background-image: url('../assets/img/black-iphone-5-3.jpg');
-    background-size: cover;
-    background-position: left top;
-    background-repeat: no-repeat;
+.bg_img {
+  background-image: url("../assets/img/black-iphone-5-3.jpg");
+  background-size: cover;
+  background-position: left top;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &::before {
+    content: "";
+    backdrop-filter: blur(6px);
     position: absolute;
-    z-index: -1;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
-    &::before {
-      content: '';
-      backdrop-filter: blur(6px);
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
   }
+}
 
-  .no_contact_text {
-    font-size: 35px;
-    background: linear-gradient(45deg, #0720a1, #201b20 27%, #50390f);
-    color: #ebeef4;
-    -webkit-background-clip: text;
-    -webkit-text-stroke: 3px transparent;
-    text-shadow: 4px 1px 2px #230fcb;
-  }
+.no_contact_text {
+  font-size: 35px;
+  background: linear-gradient(45deg, #0720a1, #201b20 27%, #50390f);
+  color: #ebeef4;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 3px transparent;
+  text-shadow: 4px 1px 2px #230fcb;
+}
 
-  .contact_input_radio {
-    margin-left: 10px;
-  }
+.contact_input_radio {
+  margin-left: 10px;
+}
 </style>
