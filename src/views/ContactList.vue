@@ -92,6 +92,10 @@
     padding: 7px 10px;
   }
 
+  .wrapper_contact {
+    padding-bottom: 15px;
+  }
+
   .wrapper_radio {
     display: flex;
     gap: 14px;
