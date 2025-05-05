@@ -43,7 +43,7 @@
         <ContactCard v-for="contact in currentList" :key="contact.id" :contact="contact" />
       </div>
       <div v-else class="no_contact">No contacts found.</div>
-      <div class="bg_img_list"></div>
+      <!-- <div class="bg_img_list"></div> -->
     </div>
     <div v-else class="no_contact">
       <p class="no_contact_text">No contacts. Click the Add contact button above to add one.</p>
